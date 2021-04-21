@@ -1,0 +1,50 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: raw
+    description: A replica of the postgres database used to power the jaffle_shop app.
+    tables:
+      - name: stg_customers
+        columns:
+          - name: id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+
+      - name: stg_orders
+        description: A replica of customers data
+        columns:
+          - name: id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+          - name: user_id
+            description: Some description
+          - name: order_date
+            description: Some description
+          - name: status
+            description: Some description
+
+  - name: stripe
+    database: raw
+    description: replicate of payments data
+    schema: stripe
+    description: A replica of the postgres database used to power the jaffle_shop app.
+    tables:
+      - name: payments
+        columns:
+          - name: id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+          - name: orderid
+            description: Some description
+          - name: payment_method
+          - name: status
+          - name: amount
+          - name: created  
