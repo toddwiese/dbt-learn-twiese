@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized='incremental'
+    )
+}}
+
 with 
 
 orders as (
@@ -61,11 +67,18 @@ joined as (
         ON services.ServiceID = service_items.ServiceID
     INNER JOIN items
         ON service_items.ItemID = items.CustomerOrderItemID
+
+
+    {% if is_incremental() %}
+    
+    where updated_at >= (select max(updated_at) from {{ this }} )
+    
+    {% endif %}
 ), 
 
 aggregated as (
 
-    select 
+    select
         {{ dbt_utils.surrogate_key([
             'ServiceNK_PK',
             'CustomerOrderItemID',
