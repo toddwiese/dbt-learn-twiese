@@ -5,9 +5,11 @@ sources:
     database: raw
     tables:
       - name: co_item
+        description: "Customer Order schema, items"
       - name: co_order
       - name: co_orderparty
       - name: co_service
       - name: co_serviceitem
       - name: ep_actualitem
+        description: "Enterprise planning, actual items"
       - name: mdm_party
