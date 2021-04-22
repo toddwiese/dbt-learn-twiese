@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: shipping_data
+    database: raw
+    tables:
+      - name: co_item
+      - name: co_order
+      - name: co_orderparty
+      - name: co_service
+      - name: co_serviceitem
+      - name: ep_actualitem
+      - name: mdm_party
