@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: item_measures_orion
+    description:  Is at the grain of order item
+    columns:
+      - name: primary_key
+        description: combination of ServiceNK_PK, CustomerOrderItemID, CustomerCode 
+        tests:
+          - unique
+          - not_null
+      - name: nmfc
+      - name: actualweightpounds
+      - name: actualpallets
+      - name: actualvolumecubicfeet
+      - name: actualquantity

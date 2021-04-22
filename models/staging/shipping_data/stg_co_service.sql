@@ -9,6 +9,7 @@ renamed as (
     select
         serviceid,
         customerorderid,
+        serviceid || customerorderid as customer_service_id,
         hvr_isdelete
 
     from source
