@@ -18,6 +18,3 @@ renamed as (
 )
 
 select * from renamed
-
-limit 500
-/* limit added automatically by dbt cloud */
