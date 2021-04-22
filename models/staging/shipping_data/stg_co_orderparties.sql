@@ -1,14 +1,16 @@
 with source as (
 
-    select * from {{ source('shipping_data', 'co_order') }}
+    select * from {{ source('shipping_data', 'co_orderparty') }}
 
 ),
 
 renamed as (
 
     select
+        orderpartyid,
+        partyrolerdn,
+        partynumber,
         customerorderid,
-        customerordernumber,
         hvr_isdelete
 
     from source
@@ -16,3 +18,6 @@ renamed as (
 )
 
 select * from renamed
+
+limit 500
+/* limit added automatically by dbt cloud */
