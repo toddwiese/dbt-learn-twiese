@@ -3,9 +3,10 @@ version: 2
 sources:
   - name: jaffle_shop
     database: raw
+    schema: jaffle_shop
     description: A replica of the postgres database used to power the jaffle_shop app.
     tables:
-      - name: stg_customers
+      - name: customers
         columns:
           - name: id
             description: Primary key of the table
@@ -14,7 +15,7 @@ sources:
               - not_null
           - name: first_name
 
-      - name: stg_orders
+      - name: orders
         description: A replica of customers data
         columns:
           - name: id
@@ -34,8 +35,9 @@ sources:
     description: replicate of payments data
     schema: stripe
     description: A replica of the postgres database used to power the jaffle_shop app.
+    loaded_at_field: _batched_at
     tables:
-      - name: payments
+      - name: payment
         columns:
           - name: id
             description: Primary key of the table
@@ -47,4 +49,11 @@ sources:
           - name: payment_method
           - name: status
           - name: amount
-          - name: created  
+          - name: created
+    freshness:
+      warn_after:
+        count: 1
+        period: day
+      error_after:
+        count: 5
+        period: day
